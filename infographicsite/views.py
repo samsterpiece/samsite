@@ -1,6 +1,8 @@
 from django.shortcuts import render, HttpResponse
+from django.http import Http404
 from .models import FilesUpload
 import requests
+from django.views.decorators.csrf import csrf_exempt
 
 from django.utils.datastructures import MultiValueDictKeyError
 from django.views.generic import View
@@ -28,7 +30,6 @@ def home2(request):
         return HttpResponse("Your file was savgeted")
 
 
-
 # This method serves the purpose of posting the data to the admin side
 # And saving it in file2.
 def home(request):
@@ -46,10 +47,16 @@ def home(request):
 #     return StreamingHttpResponse('it was GET request')
         return render(request, "results.html", { "context": context })
     elif request.method == "GET":
-        context = {"male": 47}
-        return render(request, "index.html", context)
+        return render(request, "index.html", {})
     else:
         return HttpResponse("Oops")
+
+@csrf_exempt 
+def analyze_data(request):
+    if request.method == "POST":
+            return HttpResponse("Hello")
+    else:
+       raise Http404("Error")
 
 # def home(request):
 #     if request.method == "POST":
