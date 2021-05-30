@@ -213,10 +213,13 @@ def processData(data):
     peopleStateCount = []
     for state in top10States:
         #    results["locations"][state]["percentageAllUsers"] = percentageCalculator(sortState.count(state), numUsers) + "%"
-        peopleStateCount.append(sortState.count(i))
-    # print("People in each state count in the top 10: " , peopleStateCount)
+
+        peopleStateCount.append(sortState.count(state))
+
+
+    print("People in each state count in the top 10: " , peopleStateCount)
     stateDict = dict(zip(top10States, peopleStateCount))
-    # print('state dictionary: ' , stateDict)
+    print('state dictionary: ' , stateDict)
 
     # total of people living in
     # all of the top 10 states
@@ -232,8 +235,7 @@ def processData(data):
 
     for state in stateDict:
         if type(state) == str:
-            results["locations"][state]["percentageAllUsers"] = percentageCalculator(stateDict[state],
-                                                                                     totalPeople) + "%"
+            results["locations"][state]["generalUserCount"] = stateDict[state]
         else:
             continue
         # print("Percentage of people in: ",state,"{:.2f}".format((stateDict[state] / totalPeople) * 100),"%")
@@ -261,18 +263,17 @@ def processData(data):
     print("Nonbinary Dicts: ", nonbinaryDict)
 
     for state in femaleDict:
-        results["locations"][state]["percentageFemaleUsers"] = percentageCalculator(femaleDict[state],
-                                                                                    totalPeople) + "%"
+        results["locations"][state]["femaleUserCount"] = femaleDict[state]
         # print("Female percentages in: ", i,"{:.2f}".format((femaleDict[i] / totalPeople) * 100),"%")
 
     for state in maleDict:
         # print("Male percentages in: ",i,"{:.2f}".format((maleDict[i] / totalPeople) * 100),"%")
-        results["locations"][state]["percentageMaleUsers"] = percentageCalculator(maleDict[state], totalPeople) + "%"
+        results["locations"][state]["maleUserCount"] = maleDict[state]
 
     for state in nonbinaryDict:
         # print("Nonbinary percentages in: ",i,"{:.2f}".format((nonbinaryDict[i] / totalPeople) * 100),"%")
-        results["locations"][state]["percentageNonbinaryUsers"] = percentageCalculator(nonbinaryDict[state],
-                                                                                       totalPeople) + "%"
+        results["locations"][state]["nonbinaryUserCount"] = nonbinaryDict[state]
+        
 
     ##--------------------------END OF NUMBER 5 AND 6---------------------------------------------------------####
 

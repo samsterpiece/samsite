@@ -9,6 +9,7 @@
 
     <!--- Script tag at top -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
+    <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
 
     <!-- declare global context variable -->
     {{ context | json_script:"context" }}
@@ -16,11 +17,14 @@
     {% load static %}
 
     <!--- chart canvases -->
-    <canvas id="gender-chart" width="600" height="450"></canvas>
-    <canvas id="firstname-chart" width = "500" height = "450"></canvas>
-    <canvas id="lastname-chart" width = "500" height = "450"></canvas>
-
-
+    <canvas id="gender-chart" width="300" height="450"></canvas>
+    <canvas id="firstname-chart" width = "300" height = "450"></canvas>
+    <canvas id="lastname-chart" width = "300" height = "450"></canvas>
+    <canvas id="locations-chart" width = "300" height = "450"></canvas>
+    <canvas id="female-chart" width = "300" height = "450"></canvas>
+    <canvas id="male-chart" width = "300" height = "450"></canvas>
+    <canvas id="nonbinary-chart" width = "300" height = "450"></canvas>
+    <canvas id="age-chart" width = "300" height = "450"></canvas>
 
     <!-- End of chart canvases-->
     <script src="{% static 'chart.js' %}" type="text/javascript"></script>
