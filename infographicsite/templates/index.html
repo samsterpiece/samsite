@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Please Upload File Here</title>
+  </head>
+
+  <!-- upload file button -->
+  <body>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+      <input type="file" name="file">
+      <br>
+      <input type="submit">
+    </form>
+
+    <!-- end of upload file button -->
+
+    <canvas id="chart" width="500" height="500"></canvas>
+  </body>
+
+  <!--- End of Load JSON file to chart -->
+</html>
