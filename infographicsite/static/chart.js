@@ -9,12 +9,13 @@ new Chart(document.getElementById("gender-chart"), {
       datasets: [
         {
           label: "Gender",
-          backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f"],
+          backgroundColor: ["#FF3399", "#FFFF00","#3cba9f"],
           data: Object.values(context.genders)
         }
       ]
     },
     options: {
+    responsive: true,
       title: {
         display: true,
         text: 'Genders from uploaded user data'
@@ -30,12 +31,13 @@ new Chart(document.getElementById("firstname-chart"), {
       datasets: [
         {
           label: "First Names",
-          backgroundColor: ["FF00FF", "#8e5ea2"],
+          backgroundColor: ["#dcb218", "#00FFFF"],
           data: Object.values(context.names.first)
         }
       ]
     },
     options: {
+    responsive: true,
       title: {
         display: true,
         text: 'First names A-M versus N-Z from uploaded user data'
@@ -43,20 +45,26 @@ new Chart(document.getElementById("firstname-chart"), {
     }
 });
 
+
+
 //Example 3
 new Chart(document.getElementById("lastname-chart"), {
-    type: 'polarArea',
+    type: 'pie',
     data: {
       labels: ["A-M", "N-Z"],
       datasets: [
         {
           label: "Last Names",
-          backgroundColor: ["#452984", "#8e5ea2"],
+          backgroundColor: ["#c69df5", "#00FF00"],
           data: Object.values(context.names.last)
         }
       ]
     },
     options: {
+    responsive: true,
+    plugins:{
+    legend:{
+        postion: 'top'}},
       title: {
         display: true,
         text: 'Last names A-M versus N-Z from uploaded user data'
@@ -88,6 +96,7 @@ new Chart(document.getElementById("locations-chart"), {
       ]
     },
     options: {
+    responsive: true,
         plugins: {
         labels:{
         render: 'percentage',
@@ -127,6 +136,7 @@ new Chart(document.getElementById("female-chart"), {
       ]
     },
     options: {
+    responsive: true,
         plugins: {
         labels:{
         render: 'percentage',
@@ -165,6 +175,7 @@ new Chart(document.getElementById("male-chart"), {
       ]
     },
     options: {
+    responsive: true,
       plugins: {
         labels: {
         render: 'percentage',
@@ -206,6 +217,7 @@ new Chart(document.getElementById("nonbinary-chart"), {
       ]
     },
     options: {
+    responsive: true,
       plugins: {
         labels:{
         render: 'percentage',
@@ -235,6 +247,7 @@ new Chart(document.getElementById("age-chart"), {
       ]
     },
     options: {
+    responsive: true,
       plugins: {
         labels:{
         render: 'percentage',
@@ -244,7 +257,7 @@ new Chart(document.getElementById("age-chart"), {
     },
       title: {
         display: true,
-        text: 'Percentage Of People In Va'
+        text: 'Percentage Of People In Various Age Ranges'
       }
     }
 });

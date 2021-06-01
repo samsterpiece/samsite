@@ -1,19 +1,17 @@
-from django.shortcuts import render, HttpResponse
-from django.http import Http404
-from .models import FilesUpload
+import json
+import logging
+
 import requests
+import os
+from django.views.static import serve
+from django.http import Http404
+from django.http import JsonResponse
+from django.shortcuts import render, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from django.utils.datastructures import MultiValueDictKeyError
-from django.views.generic import View
-from rest_framework.views import APIView
-from rest_framework.response import Response
-from rest_framework.request import Request
-from rest_framework import status
-from rest_framework.decorators import api_view
-import json
 from infographicsite import infoparse
-import logging
+from .models import FilesUpload
+
 
 # Create your views here.
 #Passing information into the template
@@ -27,7 +25,7 @@ def home2(request):
     if requests.get == "GET":
         file2 = request.FILES["file"]
         document = FilesUpload.objects.create(file = file2) #file2 saves the JSON object
-        return HttpResponse("Your file was savgeted")
+        return HttpResponse("Your file was saved")
 
 
 # This method serves the purpose of posting the data to the admin side
@@ -51,10 +49,26 @@ def home(request):
     else:
         return HttpResponse("Oops")
 
-@csrf_exempt 
+#exposing a POST endpoint without security authentication
+@csrf_exempt
 def analyze_data(request):
     if request.method == "POST":
-            return HttpResponse("Hello")
+        jsonData = json.loads(request.FILES["file"].read())
+        results = infoparse.processData(jsonData)
+        # if request.META["HTTP_ACCEPT"] == "application/json":
+        print("accept json")
+        processedUserData = infoparse.processData(jsonData)
+        response = JsonResponse(processedUserData)
+        response['Content-Disposition'] = 'attachment; filename=export.json'
+        return response
+        # elif request.META["HTTP_ACCEPT"] == "application/xml":
+        #     print("accept xml")
+
+
+        # #return xml.somefunc(xmlResponse(jsonData))
+        # elif request.META["HTTP_ACCEPT"] == "text/plain":
+        #     # return plainTextResponse(jsonData)
+        #     return HttpResponse("Hello")
     else:
        raise Http404("Error")
 

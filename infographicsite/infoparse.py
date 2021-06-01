@@ -18,7 +18,7 @@ def getJSONfromFile(file):
     # returns JSON object as
     # a dictionary
     # data is a dictionary
-    # json.load takes in JSON string and parses to give dict
+    # json.loads takes in JSON string and parses to give dict
     data = json.loads(file)
     # Closing file
     # json_file.close()
@@ -27,7 +27,7 @@ def getJSONfromFile(file):
     # Return
     return data
 
-
+#Proccesses data from JSON file
 def processData(data):
     users = data["results"]
     numUsers = len(data["results"])

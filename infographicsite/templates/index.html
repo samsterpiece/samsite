@@ -10,9 +10,11 @@
   <body>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-      <input type="file" name="file">
+      <!-- accept filters selection and only seeks json files -->
+      <input type="file" required accept=".json" name="file">
       <br>
-      <input type="submit">
+      <input type="submit" name="visualize" value="Generate Chart" formaction="/"> <!-- Visualize JSON data into charts -->
+      <input type="submit" value="Download File" name="download" formaction="/data"> <!-- Export JSON data into a file -->
     </form>
 
     <!-- end of upload file button -->
