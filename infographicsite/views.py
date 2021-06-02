@@ -15,12 +15,6 @@ from infographicsite import infoparse
 from .models import FilesUpload
 
 
-# Create your views here.
-#Passing information into the template
-#still return an http response
-
-
-
 def home2(request):
     #This method serves the purpose of receiving the data
     #uploaded to the server.
@@ -78,12 +72,3 @@ def analyze_data(request):
         #     return HttpResponse("Hello")
     else:
         raise Http404("Error")
-
-# def home(request):
-#     if request.method == "POST":
-#         data = json.load(request.FILES["file"].read())
-#         userCount = len(data['results'])
-#         firstFirstName = data['results'][0]['name']['first']
-#         context = { "count":userCount, "ffName":firstFirstName }
-#         return render(request, "index.html", context)
-#     return render(request, "index.html")
