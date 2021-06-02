@@ -10,7 +10,7 @@ from django.http import Http404
 from django.http import JsonResponse
 from django.shortcuts import render, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-
+import django_heroku
 from infographicsite import infoparse
 from .models import FilesUpload
 
