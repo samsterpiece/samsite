@@ -1,1 +1,1 @@
-web: gunicorn /samsite/wsgi.py
+web: python manage.py runserver
