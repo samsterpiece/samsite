@@ -15,7 +15,8 @@ import os
 import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+#BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 if os.path.exists('env.py'):
@@ -30,7 +31,7 @@ SECRET_KEY = 'django-insecure-!dg$+n%iu%!=ig(5-j*h$xk9t&ie=)xh(0ia6%0vn7(wo$2)qw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['**.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -127,7 +128,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -135,6 +136,7 @@ STATICFILES_FINDERS = (
     # other finders..
     'compressor.finders.CompressorFinder',
 )
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'))
 COMPRESS_ROOT = STATIC_URL
 MEDIA_ROOT = os.path.join(BASE_DIR, "userUploadedFiles")
 MEDIA_URL = '/media/'
