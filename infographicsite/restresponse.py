@@ -7,7 +7,7 @@ def jsonResponse(jsonData):
 
 def xmlResponse(jsonData):
     # analyse data and build xml response
-    xml = dicttoxml.dicttoxml(buildResponse(jsonData))
+    return dicttoxml.dicttoxml(buildResponse(jsonData))
 
 def plainTextResponse(jsonData):
     print("Built a plain text response")

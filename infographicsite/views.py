@@ -10,9 +10,11 @@ from django.http import Http404
 from django.http import JsonResponse
 from django.shortcuts import render, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-
+import dicttoxml
 from infographicsite import infoparse
+from infographicsite import restresponse
 from .models import FilesUpload
+
 
 
 # Create your views here.
@@ -52,6 +54,8 @@ def home(request):
         return HttpResponse("Oops")
 
 #exposing a POST endpoint without security authentication
+#Method also provides ability to have calculations of a given JSON file
+#downloaded into a file user can save on local drive
 @csrf_exempt
 def analyze_data(request):
     if request.method == "POST":
@@ -61,30 +65,22 @@ def analyze_data(request):
         # expectedType = request.POST.get('contentType')
         jsonData = json.loads(request.FILES["file"].read())
         results = infoparse.processData(jsonData)
-        # if request.META["HTTP_ACCEPT"] == "application/json":
-        print("accept json")
-        processedUserData = infoparse.processData(jsonData)
-        response = JsonResponse(processedUserData)
+
+        if request.META["HTTP_ACCEPT"] == "application/json":
+            processedUserData = infoparse.processData(jsonData)
+            response = JsonResponse(processedUserData)
         # response['Content-Type'] = expectedType
-        response['Content-Disposition'] = 'attachment; filename=export.json'
-        return response
-        # elif request.META["HTTP_ACCEPT"] == "application/xml":
-        #     print("accept xml")
+            response['Content-Disposition'] = 'attachment; filename=export.json'
+            return HttpResponse(response, content_type="application/json")
 
+        elif request.META["HTTP_ACCEPT"] == "application/xml":
+            print("accept xml")
+            return restresponse.xmlResponse(jsonData)
 
-        # #return xml.somefunc(xmlResponse(jsonData))
-        # elif request.META["HTTP_ACCEPT"] == "text/plain":
-        #     # return plainTextResponse(jsonData)
-        #     return HttpResponse("Hello")
+        elif request.META["HTTP_ACCEPT"] == "text/plain":
+            return restresponse.plainTextResponse(jsonData)
+            return HttpResponse("Hello")
+
     else:
-       raise Http404("Error")
-
-# def home(request):
-#     if request.method == "POST":
-#         data = json.load(request.FILES["file"].read())
-#         userCount = len(data['results'])
-#         firstFirstName = data['results'][0]['name']['first']
-#         context = { "count":userCount, "ffName":firstFirstName }
-#         return render(request, "index.html", context)
-#     return render(request, "index.html")
+        raise Http404("Error")
 
