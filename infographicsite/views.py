@@ -2,6 +2,8 @@ import json
 import logging
 
 import requests
+from django.core.serializers import serialize
+
 import os
 from django.views.static import serve
 from django.http import Http404
@@ -53,12 +55,17 @@ def home(request):
 @csrf_exempt
 def analyze_data(request):
     if request.method == "POST":
+        # body_unicode = request.body.decode('utf-8')
+        # body = json.loads(body_unicode)
+        # expectedType = body['contentType']
+        # expectedType = request.POST.get('contentType')
         jsonData = json.loads(request.FILES["file"].read())
         results = infoparse.processData(jsonData)
         # if request.META["HTTP_ACCEPT"] == "application/json":
         print("accept json")
         processedUserData = infoparse.processData(jsonData)
         response = JsonResponse(processedUserData)
+        # response['Content-Type'] = expectedType
         response['Content-Disposition'] = 'attachment; filename=export.json'
         return response
         # elif request.META["HTTP_ACCEPT"] == "application/xml":

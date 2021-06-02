@@ -1,27 +1,20 @@
 const contextElement = document.getElementById('context');
 let resultContainer = document.querySelector('.canvasContainer');
-console.log("~~~~~~~~~~~~~~~~~~")
-console.log(contextElement)
-console.log("~~~~~~~~~~~~~~~~~~")
-console.log(resultContainer)
-console.log("~~~~~~~~~~~~~~~~~~")
-console.log(contextElement.textContent)
-console.log(contextElement.textContent.length)
 let context;
 if (contextElement && contextElement.textContent && contextElement.textContent.length !== 2) {
-  console.log("A")
   context = JSON.parse(document.getElementById('context').textContent);
   resultContainer.style.display = "inline-block";
 } else {
     console.log("B")
   resultContainer.style.display = "none";
 }
-
+Chart.defaults.global.defaultFontColor = "#000000";
 // Example 1
 new Chart(document.getElementById("gender-chart"), {
     type: 'doughnut',
     data: {
       labels: Object.keys(context.genders),
+      color: "#000000",
       datasets: [
         {
           label: "Gender",

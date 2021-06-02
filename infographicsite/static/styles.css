@@ -8,7 +8,7 @@ body {
     margin: auto;
 }
 
-/*Calls the class canvasWrapper and defines the bounds that the canvas works with, holding the 
+/*Calls the class canvasWrapper and defines the bounds that the canvas works with, holding the
  chart elements within it.*/
 .canvasWrapper {
     width: 45%;
@@ -20,7 +20,7 @@ body {
     padding: 0;
 }
 
-/*Uniformally changes all the graphs to be the same size simultaneously. 
+/*Uniformally changes all the graphs to be the same size simultaneously.
 Targeting the canvas element inside the wrapper*/
 .canvasWrapper > canvas {
     width: 100%;
@@ -31,3 +31,81 @@ Targeting the canvas element inside the wrapper*/
     transform: translateY(-1px);
     box-shadow: 1px 1px 2px 2px gray;
 }
+
+
+/*Gradient web background */
+body {
+	background: linear-gradient(-45deg, #b0f3f1 , #ffcfdf, #fad0c4, #f1a7f1);
+	background-size: 400% 400%;
+	animation: gradient 15s ease infinite;
+    min-height: 100vh;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+/*Animated Title Site*/
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap");
+h1 {
+  color: black;
+  text-transform: uppercase;
+  padding: 1px;
+  font-family: "Monaco", cursive;
+  font-weight: 100;
+  width: 100%;
+  white-space: nowrap;
+}
+h1::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -50px;
+  width: 600px;
+  margin-left: -300px;
+  margin-top: -220px;
+  height: 600px;
+
+  z-index: -1;
+}
+h1 a {
+
+  display: block;
+  padding: 20px;
+  text-decoration: none;
+  letter-spacing: 30px;
+  color: black;
+  animation: comein 1.5s 1 ease-in-out forwards;
+}
+
+@keyframes comein {
+  0% {
+    letter-spacing: 80px;
+    color: rgba(255, 255, 255, 0);
+  }
+  70% {
+    letter-spacing: 20px;
+  }
+  100% {
+    letter-spacing: 25px;
+    color: rgba(0, 0, 0, 1); /* Font color for title */
+  }
+}
+
+body {
+
+  height: 100vh;
+  margin: 0;
+
+}
+
+
+
