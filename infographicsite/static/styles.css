@@ -1,4 +1,33 @@
-* {
-    background-color: magenta;
-    color: pink;
+body {
+    width: 100%;
+    text-align: center;
+}
+
+.canvasContainer {
+    width: 94%;
+    margin: auto;
+}
+
+/*Calls the class canvasWrapper and defines the bounds that the canvas works with, holding the 
+ chart elements within it.*/
+.canvasWrapper {
+    width: 45%;
+    border: 2px solid gray;
+    border-radius: 10px;
+    display: inline-block;
+    box-shadow: 1px 1px 1px 1px gray;
+    margin: 1.5%;
+    padding: 0;
+}
+
+/*Uniformally changes all the graphs to be the same size simultaneously. 
+Targeting the canvas element inside the wrapper*/
+.canvasWrapper > canvas {
+    width: 100%;
+    min-height: 35vh;
+}
+
+.canvasWrapper:hover {
+    transform: translateY(-1px);
+    box-shadow: 1px 1px 2px 2px gray;
 }

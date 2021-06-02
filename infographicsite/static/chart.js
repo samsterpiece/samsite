@@ -1,5 +1,21 @@
-const context = JSON.parse(document.getElementById('context').textContent);
-
+const contextElement = document.getElementById('context');
+let resultContainer = document.querySelector('.canvasContainer');
+console.log("~~~~~~~~~~~~~~~~~~")
+console.log(contextElement)
+console.log("~~~~~~~~~~~~~~~~~~")
+console.log(resultContainer)
+console.log("~~~~~~~~~~~~~~~~~~")
+console.log(contextElement.textContent)
+console.log(contextElement.textContent.length)
+let context;
+if (contextElement && contextElement.textContent && contextElement.textContent.length !== 2) {
+  console.log("A")
+  context = JSON.parse(document.getElementById('context').textContent);
+  resultContainer.style.display = "inline-block";
+} else {
+    console.log("B")
+  resultContainer.style.display = "none";
+}
 
 // Example 1
 new Chart(document.getElementById("gender-chart"), {
@@ -168,7 +184,7 @@ new Chart(document.getElementById("male-chart"), {
       datasets: [
         {
           label: "States",
-          backgroundColor: ["#FF00FF", "#FF0000","#FFA500", "#80b938", "#8d5100",
+          backgroundColor: ["#FF00FF", "#FF0000","#FFA500", "#452984", "#8d5100",
           "#ebbaf8","#dcb218","#c69df5", "#452984","#85409b",],
           data: values
         }

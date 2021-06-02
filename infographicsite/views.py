@@ -43,7 +43,7 @@ def home(request):
 #         #received_json_data=json.loads(request.body)
 #         return StreamingHttpResponse('it was post request: '+str(received_json_data))
 #     return StreamingHttpResponse('it was GET request')
-        return render(request, "results.html", { "context": context })
+        return render(request, "index.html", { "context": context })
     elif request.method == "GET":
         return render(request, "index.html", {})
     else:
