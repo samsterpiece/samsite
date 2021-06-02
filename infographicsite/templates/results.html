@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+            <!-- declare global context variable -->
+        {{ context | json_script:"context" }}
+
+        {% load static %}
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Data Analysis Results</title>
+        <link rel="stylesheet" type="text/css"  href="{% static 'styles.css' %}"/>
+    </head>
+
+
+    <!--- Script tag at top -->
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
+    <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+
+    <body>
+
+        <!--- chart canvases and alignment  -->
+        <div class="canvasContainer">
+            <div class="canvasWrapper"><canvas id="gender-chart" ></canvas></div>
+            <div class="canvasWrapper"><canvas id="firstname-chart"></canvas></div>
+            <div class="canvasWrapper"><canvas id="lastname-chart" ></canvas></div>
+            <div class="canvasWrapper"><canvas id="locations-chart" ></canvas></div>
+            <div class="canvasWrapper"><canvas id="female-chart" ></canvas></div>
+            <div class="canvasWrapper"><canvas id="male-chart" ></canvas></div>
+            <div class="canvasWrapper"><canvas id="nonbinary-chart" ></canvas></div>
+            <div class="canvasWrapper"><canvas id="age-chart" ></canvas></div>
+        </div>
+        <!-- End of chart canvases-->
+        <script src="{% static 'chart.js' %}" type="text/javascript"></script>
+    </body>
+
+
+
+</html>
