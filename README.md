@@ -5,7 +5,10 @@ Link to specific JSON test file to test the website: https://raw.githubuserconte
 Link to heroku-deployed webapp version:  https://samsterapp.herokuapp.com/
 Web app created utilizing the data from https://randomuser.me/
 
-Expected data format should be in JSON format- plain text and xml is in developmental mode, with some logic implemented but no full functionality as of this moment. 
+Expected data format should be in JSON format from the randomuser website. Any other JSON file will give an error.
+
+
+plain text and xml is in developmental mode, with some logic implemented but no full functionality as of this moment. 
 
 GIFs of Demos: 
 
