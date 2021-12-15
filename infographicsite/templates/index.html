@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-        {{ context | json_script:"context" }}
-        {% load static %}
-  <head>
-    <meta charset="UTF-8">
-    <title>Please Upload File Here</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}"/>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
-    <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
-      <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
-  </head>
+{{ context | json_script:"context" }}
+{% load static %}
 
-  <body>
+<head>
+  <meta charset="UTF-8">
+  <title>Please Upload File Here</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
+  <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
+  <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+</head>
+
+<body>
   <!----
   <h1 class="text-light">Sam's Infographic Site</h1>
   <h2 class="text-light small font-weight-bold"> by Samantha Badeau</h2>
@@ -22,48 +23,64 @@
   <h1><a href="#0">Sam's Infographic Site</a></h1>
   <div>
 
-      <form method="POST" enctype="multipart/form-data">
-          {% csrf_token %}
-        <!-- accept filters selection and only seeks json files -->
-        <input type="file" required accept=".json" name="file">
-        <br>
-          <!-- upload file button -->
-        <input type="submit" name="visualize" value="Generate Chart" formaction="/"> <!-- Visualize JSON data into charts -->
-        <input type="submit" value="Download File Calculations" name="download" formaction="/data"> <!-- Export JSON data into a file -->
-        <!-- -->
-<!--          <select name="contentType" id="contentType"> Options to download file calculations in certain form-->
-<!--          <option value="application/json" selected>JSON</option>-->
-<!--          <option value="application/xml">XML</option>-->
-<!--          <option value="text/plain">Text</option>-->
-        </select>
-      </form>
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+      <!-- accept filters selection and only seeks json files -->
+      <input type="file" required accept=".json" name="file">
+      <br>
+      <!-- upload file button -->
+      <input type="submit" name="visualize" value="Generate Chart" formaction="/">
+      <!-- Visualize JSON data into charts -->
+      <input type="submit" value="Download File Calculations" name="download" formaction="/data">
+      <!-- Export JSON data into a file -->
+      <!-- -->
+      <!--          <select name="contentType" id="contentType"> Options to download file calculations in certain form-->
+      <!--          <option value="application/json" selected>JSON</option>-->
+      <!--          <option value="application/xml">XML</option>-->
+      <!--          <option value="text/plain">Text</option>-->
+      </select>
+    </form>
 
-      <h3>Please click <a href="hugeUserData.json" download= "hugeJSONFile">here</a> to download a sample JSON file to upload. JSON files are made via RandomUser API
+    <h3>Please click <a href="javascript:fetch()">here</a> to download a sample JSON file to
+      upload. JSON files are made via RandomUser API
       found at random user <a href="https://randomuser.me/documentation" target="_blank">website.</a></h3>
+
+    <script>
+      let url = 'https://randomuser.me/api/?results=5000';
+
+      fetch(url)
+        .then(res => res.json())
+        .then((out) => {
+          console.log('Checkout this JSON! ', out);
+        })
+        .catch(err => {
+          throw err
+        });
+    </script>
 
 
   </div>
-      <div class="canvasContainer">
-          <div class="canvasWrapper"><canvas id="gender-chart" ></canvas></div>
-          <div class="canvasWrapper"><canvas id="firstname-chart"></canvas></div>
-          <div class="canvasWrapper"><canvas id="lastname-chart" ></canvas></div>
-          <div class="canvasWrapper"><canvas id="locations-chart" ></canvas></div>
-          <div class="canvasWrapper"><canvas id="female-chart" ></canvas></div>
-          <div class="canvasWrapper"><canvas id="male-chart" ></canvas></div>
-          <div class="canvasWrapper"><canvas id="nonbinary-chart" ></canvas></div>
-          <div class="canvasWrapper"><canvas id="age-chart" ></canvas></div>
-          <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium"
-               data-type="VERTICAL" data-vanity="samanthabadeau" data-version="v1"><a
-                  class="badge-base__link LI-simple-link"
-                  href="https://www.linkedin.com/in/samanthabadeau?trk=profile-badge">By: Samantha Badeau</a></div>
+  <div class="canvasContainer">
+    <div class="canvasWrapper"><canvas id="gender-chart"></canvas></div>
+    <div class="canvasWrapper"><canvas id="firstname-chart"></canvas></div>
+    <div class="canvasWrapper"><canvas id="lastname-chart"></canvas></div>
+    <div class="canvasWrapper"><canvas id="locations-chart"></canvas></div>
+    <div class="canvasWrapper"><canvas id="female-chart"></canvas></div>
+    <div class="canvasWrapper"><canvas id="male-chart"></canvas></div>
+    <div class="canvasWrapper"><canvas id="nonbinary-chart"></canvas></div>
+    <div class="canvasWrapper"><canvas id="age-chart"></canvas></div>
+    <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-type="VERTICAL"
+      data-vanity="samanthabadeau" data-version="v1"><a class="badge-base__link LI-simple-link"
+        href="https://www.linkedin.com/in/samanthabadeau?trk=profile-badge">By: Samantha Badeau</a></div>
 
-      </div>
-      <!-- End of chart canvases-->
-      <script src="{% static 'chart.js' %}" type="text/javascript"></script>
-
-
-  </body>
+  </div>
+  <!-- End of chart canvases-->
+  <script src="{% static 'chart.js' %}" type="text/javascript"></script>
 
 
-  <!--- End of Load JSON file to chart -->
+</body>
+
+
+<!--- End of Load JSON file to chart -->
+
 </html>
