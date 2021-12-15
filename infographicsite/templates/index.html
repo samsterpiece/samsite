@@ -50,7 +50,7 @@
       function callAjax() {
         $.ajax({
           url: "https://randomuser.me/api/",
-          success: download.bind(true, "text/json", "application/json")
+          success: download(true, "text/json", "application/json")
         });
       }
     </script>
