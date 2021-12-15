@@ -50,10 +50,9 @@
         $.ajax({
           url: 'https://randomuser.me/api/',
           dataType: 'json',
-          success: download.bind(true, "randomUser.js", "application/json")
+          success: download.bind(true, "application/json", "randomUser.json")
         });
       }
-     
     </script>
 
 
