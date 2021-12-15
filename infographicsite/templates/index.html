@@ -42,16 +42,26 @@
       </select>
     </form>
 
-    <h3>Please click <input type = "button" onclick = "callAjax()" value = "here"> to get sample JSON file to upload to site!! 
-      JSON files are made via RandomUser API found at random user <a href="https://randomuser.me/" target="_blank">website.</a></h3>
+    <h3>Please click <button onclick= "downloadJSON()">here</button> to get sample JSON file to upload to site!!
+      JSON files are made via RandomUser API found at random user <a href="https://randomuser.me/"
+        target="_blank">website.</a></h3>
 
-    <script type="text/javascript">
-      function callAjax() {
-        $.ajax({
-          url: 'https://randomuser.me/api/',
-          dataType: 'json',
-          success: download.bind(true, "application/json", "randomUser.json")
-        });
+    <script>
+
+      //Fetches data from api and downloads it
+      const API_URL = "https://randomuser.me/api/";
+      function downloadJSON() {
+        fetch(API_URL)
+        .then((response) => response.json())
+        .then((data) => {
+          const fileData = JSON.stringify(data); //Gets results from endpoint and stringify it
+          const fileName = "userData.json"; //Name of downloaded file
+          const fileType = "application/json"; //File type of downloaded file (JSON)
+
+          download(fileData, fileName, fileType);
+
+        })
+        .catch((err) => console.log(err));
       }
     </script>
 
@@ -73,7 +83,7 @@
   </div>
   <!-- End of chart canvases-->
   <script src="{% static 'chart.js' %}" type="text/javascript"></script>
-  <script src="{% static 'download.js' %}" type= "text/javascript"></script>
+  <script src="{% static 'download.js' %}" type="text/javascript"></script>
 
 
 </body>
