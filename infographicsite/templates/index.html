@@ -41,21 +41,21 @@
       </select>
     </form>
 
-    <h3>Please click <a href="javascript:fetch()">here</a> to download a sample JSON file to
-      upload. JSON files are made via RandomUser API
+    <h3>Please click <button type="button" onclick="loadDoc()">here</button> to download a sample JSON file to upload.
+      JSON files are made via RandomUser API
       found at random user <a href="https://randomuser.me/documentation" target="_blank">website.</a></h3>
 
     <script>
-      let url = 'https://randomuser.me/api/?results=5000';
-
-      fetch(url)
-        .then(res => res.json())
-        .then((out) => {
-          console.log('Checkout this JSON! ', out);
-        })
-        .catch(err => {
-          throw err
+      function loadDoc() {
+        $.ajax({
+          url: 'https://randomuser.me/api/',
+          dataType: 'json',
+          success: function (data) {
+            console.log(data);
+          }
         });
+
+      }
     </script>
 
 
