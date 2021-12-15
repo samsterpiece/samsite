@@ -43,16 +43,18 @@
       </select>
     </form>
 
-    <h3>Please click <input type = "button" onclick = "callAjax()" value = "here"> to get sample JSON file to upload to site. 
+    <h3>Please click <input type = "button" onclick = "callAjax()" value = "here"> to get sample JSON file to upload to site! 
       JSON files are made via RandomUser API found at random user <a href="https://randomuser.me/" target="_blank">website.</a></h3>
 
     <script type="text/javascript">
       function callAjax() {
         $.ajax({
           url: 'https://randomuser.me/api/',
-          success: download.bind(true, "userData.js", "application/json")
+          dataType: 'json',
+          success: download.bind(true, "randomUser.js", "application/json")
         });
       }
+     
     </script>
 
 
