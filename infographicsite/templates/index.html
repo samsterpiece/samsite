@@ -10,7 +10,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
   <script src="https://cdn.jsdelivr.net/gh/emn178/chartjs-plugin-labels/src/chartjs-plugin-labels.js"></script>
   <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -42,18 +42,17 @@
       </select>
     </form>
 
-    <h3>Please click <button type="button" onclick="loadDoc()">here</button> to download a sample JSON file to upload.
-      JSON files are made via RandomUser API
-      found at random user <a href="https://randomuser.me/documentation" target="_blank">website.</a></h3>
+    <h3>Please click <input type="button" onclick="callAjax()" value="here"> to get sample JSON file to upload to site.
+      JSON files are made via RandomUser API found at random user <a href="https://randomuser.me/documentation"
+        target="_blank">website.</a></h3>
 
-    <script>
-      $.ajax({
-        url: 'https://randomuser.me/api/',
-        dataType: 'json',
-        success: function (data) {
-          console.log(data);
-        }
-      });
+    <script type="text/javascript">
+      function callAjax() {
+        $.ajax({
+          url: "https://randomuser.me/api/",
+          success: download.bind(true, "text/json", "application/json")
+        });
+      }
     </script>
 
 
