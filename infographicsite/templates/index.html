@@ -42,29 +42,16 @@
       </select>
     </form>
 
-    <h3>Please click <button type="button" id="GetFile">here</button> to get sample JSON file to upload to site. JSON files are made via RandomUser API
-      found at random user <a href="https://randomuser.me/documentation" target="_blank">website.</a></h3>
+    <h3>Please click <input type = "button" onclick = "callAjax()" value = "here"> to get sample JSON file to upload to site. 
+      JSON files are made via RandomUser API found at random user <a href="https://randomuser.me/documentation" target="_blank">website.</a></h3>
 
-    <script>
-      $('#GetFile').on('click', function () {
+    <script type="text/javascript">
+      function callAjax() {
         $.ajax({
           url: 'https://randomuser.me/api/',
-          method: 'GET',
-          xhrFields: {
-            responseType: 'blob'
-          },
-          success: function (data) {
-            var a = document.createElement('a');
-            var url = window.URL.createObjectURL(data);
-            a.href = url;
-            a.download = 'myfile.pdf';
-            document.body.append(a);
-            a.click();
-            a.remove();
-            window.URL.revokeObjectURL(url);
-          }
+          success: download.bind(true, "userData.js", "application/json")
         });
-      });
+      }
     </script>
 
 
