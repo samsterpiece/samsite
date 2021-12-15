@@ -47,12 +47,25 @@
         target="_blank">website.</a></h3>
 
     <script type="text/javascript">
-      function callAjax() {
-        $.ajax({
-          url: "https://randomuser.me/api/",
-          success: download(true, "text/json", "application/json")
+      $(function callAjax() {
+        $("button").click(function () {
+          $.ajax({
+            url: 'https://randomuser.me/api/', // my URL
+            type: "GET",
+            dataType: 'json',
+            success: function (result) {
+              var url = URL.createObjectURL(result);
+              var $a = $('<a />', {
+                'href': url,
+                'download': 'userData.json',
+                'text': "click"
+              }).hide().appendTo("body")[0].click();
+
+              // URL.revokeObjectURL(url);
+            }
+          });
         });
-      }
+      });
     </script>
 
 
