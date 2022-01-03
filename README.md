@@ -1,5 +1,5 @@
 # samsite
-Created a webapp that accepts JSON files and renders a graph from said data.
+Written and deployed a split-stack Django app with a GUI and JSON API, displaying data using Chart JS.
 
 Updated website to have it where user clicks on "here" button to be provided a random User generated JSON file to feed into the site.
 
